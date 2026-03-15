@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Wellness - Métricas de Salud</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .wireframe-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .screen {
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            background: #fafafa;
+            padding: 20px;
+            max-width: 375px;
+            margin: 0 auto;
+            box-shadow: inset 0 0 0 1px #e0e0e0;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            margin: -20px -20px 20px -20px;
+        }
+
+        .status-bar .left {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status-bar .right {
+            display: flex;
+            gap: 4px;
+        }
+
+        .status-bar .icon {
+            width: 12px;
+            height: 12px;
+            background: #666;
+            border-radius: 50%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .filter-btn {
+            font-size: 16px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .metrics-carousel {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s;
+        }
+
+        .metric-slide {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+
+        .metric-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .metric-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #4CAF50;
+            margin-bottom: 16px;
+        }
+
+        .trend-icon {
+            margin-right: 4px;
+        }
+
+        .metric-chart {
+            height: 120px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .chart-bar {
+            width: 20px;
+            background: #4CAF50;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .chart-bar.low {
+            height: 40px;
+        }
+
+        .chart-bar.medium {
+            height: 60px;
+        }
+
+        .chart-bar.high {
+            height: 80px;
+        }
+
+        .metric-details {
+            text-align: left;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background: #4CAF50;
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .time-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background: #fff;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .time-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
+            padding: 12px 20px;
+            width: 375px;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: #4CAF50;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wireframe-container">
+        <h1>💚 Aura Wellness - Métricas de Salud</h1>
+
+        <div class="screen">
+            <div class="status-bar">
+                <div class="left">9:41</div>
+                <div class="right">
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                    <div class="icon"></div>
+                </div>
+            </div>
+
+            <div class="header">
+                <div class="back-btn">←</div>
+                <div class="page-title">Métricas</div>
+                <div class="filter-btn">⋯</div>
+            </div>
+
+            <div class="time-selector">
+                <button class="time-btn">Día</button>
+                <button class="time-btn active">Semana</button>
+                <button class="time-btn">Mes</button>
+                <button class="time-btn">Año</button>
+            </div>
+
+            <div class="metrics-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-track" id="carousel-track">
+                        <!-- Ritmo Cardíaco -->
+                        <div class="metric-slide">
+                            <div class="metric-card">
+                                <div class="metric-icon">❤️</div>
+                                <div class="metric-value">72</div>
+                                <div class="metric-label">BPM Promedio</div>
+                                <div class="metric-trend">
+                                    <span class="trend-icon">📈</span>
+                                    <span>+2% vs semana anterior</span>
+                                </div>
+                                <div class="metric-chart">
+                                    <div class="chart-bar low"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar low"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                </div>
+                                <div class="metric-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Máximo</span>
+                                        <span class="detail-value">95 BPM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Mínimo</span>
+                                        <span class="detail-value">58 BPM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Reposo</span>
+                                        <span class="detail-value">65 BPM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actividad Física -->
+                        <div class="metric-slide">
+                            <div class="metric-card">
+                                <div class="metric-icon">🏃</div>
+                                <div class="metric-value">8,547</div>
+                                <div class="metric-label">Pasos Totales</div>
+                                <div class="metric-trend">
+                                    <span class="trend-icon">📈</span>
+                                    <span>+15% vs semana anterior</span>
+                                </div>
+                                <div class="metric-chart">
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar low"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar high"></div>
+                                </div>
+                                <div class="metric-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Distancia</span>
+                                        <span class="detail-value">6.2 km</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Calorías</span>
+                                        <span class="detail-value">387 kcal</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Meta diaria</span>
+                                        <span class="detail-value">10,000 pasos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sueño -->
+                        <div class="metric-slide">
+                            <div class="metric-card">
+                                <div class="metric-icon">😴</div>
+                                <div class="metric-value">7.5</div>
+                                <div class="metric-label">Horas de Sueño</div>
+                                <div class="metric-trend">
+                                    <span class="trend-icon">📈</span>
+                                    <span>+0.5h vs semana anterior</span>
+                                </div>
+                                <div class="metric-chart">
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar low"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                </div>
+                                <div class="metric-details">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Profundo</span>
+                                        <span class="detail-value">2.1h</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">REM</span>
+                                        <span class="detail-value">1.8h</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Ligero</span>
+                                        <span class="detail-value">3.6h</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="indicators">
+                    <div class="indicator active" data-slide="0"></div>
+                    <div class="indicator" data-slide="1"></div>
+                    <div class="indicator" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <div class="nav-bar">
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">🏠</div>
+                    <div>Inicio</div>
+                </a>
+                <a href="#" class="nav-item active">
+                    <div class="nav-icon">📊</div>
+                    <div>Métricas</div>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">➕</div>
+                    <div>Agregar</div>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">👤</div>
+                    <div>Perfil</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.metric-slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function updateCarousel() {
+            const track = document.getElementById('carousel-track');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+            });
+        });
+
+        // Auto-advance carousel (optional)
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+        }, 4000);
+    </script>
+</body>
+</html>

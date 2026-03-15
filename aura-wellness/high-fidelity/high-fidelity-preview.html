@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Wellness - High-Fidelity Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F8F9FA;
+            color: #1A1C1E;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #4CAF50;
+            margin-bottom: 16px;
+        }
+
+        .header p {
+            font-size: 20px;
+            color: #42474E;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .preview-section {
+            background: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 24px;
+            border-bottom: 1px solid #E8EAED;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1A1C1E;
+            margin-bottom: 8px;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: #6C7278;
+        }
+
+        .screen-preview {
+            padding: 24px;
+            background: #FEFFFF;
+        }
+
+        /* Dashboard Preview */
+        .dashboard-preview {
+            max-width: 375px;
+            margin: 0 auto;
+        }
+
+        .dashboard-screen {
+            border: 1px solid #E0E0E0;
+            border-radius: 24px;
+            background: #FEFFFF;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #FEFFFF;
+            border-bottom: 1px solid #E8EAED;
+        }
+
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F1F3F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6C7278;
+            font-size: 18px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4CAF50;
+        }
+
+        .welcome-section {
+            padding: 24px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+        }
+
+        .greeting {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .date {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 20px;
+        }
+
+        .metric-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .heart-icon { background: #FFEBEE; color: #F44336; }
+        .steps-icon { background: #E3F2FD; color: #2196F3; }
+        .sleep-icon { background: #F3E5F5; color: #9C27B0; }
+        .water-icon { background: #E0F2FE; color: #0277BD; }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1A1C1E;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #6C7278;
+        }
+
+        .actions-section {
+            padding: 20px;
+        }
+
+        .primary-btn {
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .secondary-btn {
+            width: 100%;
+            background: #FFFFFF;
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+            border-radius: 24px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 20px;
+            background: #FFFFFF;
+            border-top: 1px solid #E8EAED;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #6C7278;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: #4CAF50;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Metrics Preview */
+        .metrics-preview {
+            max-width: 375px;
+            margin: 0 auto;
+        }
+
+        .metrics-screen {
+            border: 1px solid #E0E0E0;
+            border-radius: 24px;
+            background: #FEFFFF;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .metrics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #FEFFFF;
+            border-bottom: 1px solid #E8EAED;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F1F3F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6C7278;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1A1C1E;
+        }
+
+        .filter-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #F1F3F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6C7278;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .time-selector {
+            display: flex;
+            gap: 8px;
+            padding: 16px 20px;
+        }
+
+        .time-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 20px;
+            background: #FFFFFF;
+            font-size: 14px;
+            color: #6C7278;
+            cursor: pointer;
+        }
+
+        .time-btn.active {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .metric-detail-card {
+            margin: 20px;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-detail-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .metric-detail-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: #E8F5E8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4CAF50;
+            font-size: 32px;
+            margin-right: 16px;
+        }
+
+        .metric-detail-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1A1C1E;
+            margin-bottom: 4px;
+        }
+
+        .metric-detail-info p {
+            font-size: 16px;
+            color: #6C7278;
+        }
+
+        .trend-indicator {
+            display: flex;
+            align-items: center;
+            color: #4CAF50;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .trend-icon {
+            margin-right: 4px;
+        }
+
+        .chart-placeholder {
+            height: 120px;
+            background: linear-gradient(90deg, #E8F5E8 0%, #C8E6C9 50%, #A5D6A7 100%);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            padding: 16px;
+        }
+
+        .chart-bar {
+            width: 20px;
+            background: #4CAF50;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .chart-bar.low { height: 40px; }
+        .chart-bar.medium { height: 60px; }
+        .chart-bar.high { height: 80px; }
+
+        .metric-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #F1F3F4;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: #6C7278;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A1C1E;
+        }
+
+        .indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E0E0E0;
+        }
+
+        .indicator.active {
+            background: #4CAF50;
+        }
+
+        /* Color Palette */
+        .color-palette {
+            padding: 24px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+        }
+
+        .color-item {
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            margin: 0 auto 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A1C1E;
+            margin-bottom: 4px;
+        }
+
+        .color-hex {
+            font-size: 12px;
+            color: #6C7278;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Typography */
+        .typography-section {
+            padding: 24px;
+        }
+
+        .typography-examples {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .typography-item {
+            border-bottom: 1px solid #E8EAED;
+            padding-bottom: 16px;
+        }
+
+        .typography-item:last-child {
+            border-bottom: none;
+        }
+
+        .type-label {
+            font-size: 12px;
+            color: #6C7278;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .display-large { font-size: 57px; font-weight: 400; line-height: 64px; }
+        .display-medium { font-size: 45px; font-weight: 400; line-height: 52px; }
+        .headline-large { font-size: 32px; font-weight: 400; line-height: 40px; }
+        .headline-medium { font-size: 28px; font-weight: 400; line-height: 36px; }
+        .title-large { font-size: 22px; font-weight: 500; line-height: 28px; }
+        .title-medium { font-size: 16px; font-weight: 500; line-height: 24px; }
+        .body-large { font-size: 16px; font-weight: 400; line-height: 24px; }
+        .body-medium { font-size: 14px; font-weight: 400; line-height: 20px; }
+        .label-large { font-size: 14px; font-weight: 500; line-height: 20px; }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px 0;
+            border-top: 1px solid #E8EAED;
+        }
+
+        .footer p {
+            color: #6C7278;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Aura Wellness</h1>
+            <p>High-Fidelity Design Preview - Material Design 3</p>
+        </div>
+
+        <div class="preview-grid">
+            <!-- Dashboard Preview -->
+            <div class="preview-section">
+                <div class="section-header">
+                    <div class="section-title">Dashboard Principal</div>
+                    <div class="section-description">Vista principal con métricas y acciones rápidas</div>
+                </div>
+                <div class="screen-preview">
+                    <div class="dashboard-preview">
+                        <div class="dashboard-screen">
+                            <div class="dashboard-header">
+                                <button class="menu-btn">☰</button>
+                                <div class="logo">Aura</div>
+                                <div></div>
+                            </div>
+
+                            <div class="welcome-section">
+                                <div class="greeting">¡Hola, Carlos!</div>
+                                <div class="date">Martes, 4 de marzo</div>
+                            </div>
+
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-icon heart-icon">❤️</div>
+                                    <div class="metric-value">72</div>
+                                    <div class="metric-label">BPM</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-icon steps-icon">🏃</div>
+                                    <div class="metric-value">8,547</div>
+                                    <div class="metric-label">Pasos</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-icon sleep-icon">😴</div>
+                                    <div class="metric-value">7.5h</div>
+                                    <div class="metric-label">Sueño</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-icon water-icon">💧</div>
+                                    <div class="metric-value">2.1L</div>
+                                    <div class="metric-label">Agua</div>
+                                </div>
+                            </div>
+
+                            <div class="actions-section">
+                                <button class="primary-btn">Registrar Actividad</button>
+                                <button class="secondary-btn">Ver Métricas Detalladas</button>
+                            </div>
+
+                            <div class="bottom-nav">
+                                <a href="#" class="nav-item active">
+                                    <div class="nav-icon">🏠</div>
+                                    <div>Inicio</div>
+                                </a>
+                                <a href="#" class="nav-item">
+                                    <div class="nav-icon">📊</div>
+                                    <div>Métricas</div>
+                                </a>
+                                <a href="#" class="nav-item">
+                                    <div class="nav-icon">➕</div>
+                                    <div>Agregar</div>
+                                </a>
+                                <a href="#" class="nav-item">
+                                    <div class="nav-icon">👤</div>
+                                    <div>Perfil</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Preview -->
+            <div class="preview-section">
+                <div class="section-header">
+                    <div class="section-title">Métricas de Salud</div>
+                    <div class="section-description">Vista detallada con carousel y tendencias</div>
+                </div>
+                <div class="screen-preview">
+                    <div class="metrics-preview">
+                        <div class="metrics-screen">
+                            <div class="metrics-header">
+                                <button class="back-btn">←</button>
+                                <div class="page-title">Métricas</div>
+                                <button class="filter-btn">⋯</button>
+                            </div>
+
+                            <div class="time-selector">
+                                <button class="time-btn">Día</button>
+                                <button class="time-btn active">Semana</button>
+                                <button class="time-btn">Mes</button>
+                                <button class="time-btn">Año</button>
+                            </div>
+
+                            <div class="metric-detail-card">
+                                <div class="metric-detail-header">
+                                    <div class="metric-detail-icon">❤️</div>
+                                    <div class="metric-detail-info">
+                                        <h3>72</h3>
+                                        <p>BPM Promedio</p>
+                                    </div>
+                                </div>
+
+                                <div class="trend-indicator">
+                                    <span class="trend-icon">📈</span>
+                                    <span>+2% vs semana anterior</span>
+                                </div>
+
+                                <div class="chart-placeholder">
+                                    <div class="chart-bar low"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                    <div class="chart-bar low"></div>
+                                    <div class="chart-bar high"></div>
+                                    <div class="chart-bar medium"></div>
+                                </div>
+
+                                <div class="metric-details-grid">
+                                    <div class="detail-item">
+                                        <span class="detail-label">Máximo</span>
+                                        <span class="detail-value">95 BPM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Mínimo</span>
+                                        <span class="detail-value">58 BPM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Reposo</span>
+                                        <span class="detail-value">65 BPM</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">Ejercicio</span>
+                                        <span class="detail-value">85 BPM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="indicators">
+                                <div class="indicator active"></div>
+                                <div class="indicator"></div>
+                                <div class="indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="preview-section">
+                <div class="section-header">
+                    <div class="section-title">Paleta de Colores</div>
+                    <div class="section-description">Material Design 3 - Aura Wellness Theme</div>
+                </div>
+                <div class="color-palette">
+                    <div class="color-grid">
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #4CAF50;"></div>
+                            <div class="color-name">Primary</div>
+                            <div class="color-hex">#4CAF50</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #2196F3;"></div>
+                            <div class="color-name">Secondary</div>
+                            <div class="color-hex">#2196F3</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #FF9800;"></div>
+                            <div class="color-name">Tertiary</div>
+                            <div class="color-hex">#FF9800</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #F44336;"></div>
+                            <div class="color-name">Error</div>
+                            <div class="color-hex">#F44336</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #FEFFFF;"></div>
+                            <div class="color-name">Surface</div>
+                            <div class="color-hex">#FEFFFF</div>
+                        </div>
+                        <div class="color-item">
+                            <div class="color-swatch" style="background: #1A1C1E;"></div>
+                            <div class="color-name">On Surface</div>
+                            <div class="color-hex">#1A1C1E</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography -->
+            <div class="preview-section">
+                <div class="section-header">
+                    <div class="section-title">Escala Tipográfica</div>
+                    <div class="section-description">Inter Font Family - Material Design 3</div>
+                </div>
+                <div class="typography-section">
+                    <div class="typography-examples">
+                        <div class="typography-item">
+                            <div class="type-label">Display Large</div>
+                            <div class="display-large">Aura Wellness</div>
+                        </div>
+                        <div class="typography-item">
+                            <div class="type-label">Headline Large</div>
+                            <div class="headline-large">Bienestar Digital</div>
+                        </div>
+                        <div class="typography-item">
+                            <div class="type-label">Title Large</div>
+                            <div class="title-large">Métricas de Salud</div>
+                        </div>
+                        <div class="typography-item">
+                            <div class="type-label">Body Large</div>
+                            <div class="body-large">Monitorea tu salud con simplicidad y precisión. Nuestras métricas te ayudan a mantener un estilo de vida saludable.</div>
+                        </div>
+                        <div class="typography-item">
+                            <div class="type-label">Label Large</div>
+                            <div class="label-large">Continuar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>High-Fidelity Design Preview - Aura Wellness © 2024</p>
+            <p style="margin-top: 8px;">Material Design 3 • Inter Typography • 8px Grid System</p>
+        </div>
+    </div>
+</body>
+</html>

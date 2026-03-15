@@ -1,0 +1,210 @@
+{
+  "name": "Aura Wellness",
+  "description": "Material Design 3 theme for Aura Wellness health tracking app",
+  "version": "1.0.0",
+  "author": "Carlos Pomadev",
+  "seed": "#4CAF50",
+  "coreColors": {
+    "primary": "#4CAF50",
+    "secondary": "#2196F3",
+    "tertiary": "#FF9800",
+    "error": "#F44336",
+    "neutral": "#9E9E9E",
+    "neutralVariant": "#BDBDBD"
+  },
+  "extendedColors": [
+    {
+      "name": "success",
+      "color": "#4CAF50",
+      "description": "Success states and confirmations"
+    },
+    {
+      "name": "warning",
+      "color": "#FF9800",
+      "description": "Warning states and alerts"
+    },
+    {
+      "name": "info",
+      "color": "#2196F3",
+      "description": "Information and links"
+    }
+  ],
+  "typography": {
+    "fontFamily": "Inter",
+    "displayLarge": {
+      "fontFamily": "Inter",
+      "fontSize": 57,
+      "fontWeight": 400,
+      "lineHeight": 64,
+      "letterSpacing": -0.25
+    },
+    "displayMedium": {
+      "fontFamily": "Inter",
+      "fontSize": 45,
+      "fontWeight": 400,
+      "lineHeight": 52,
+      "letterSpacing": 0
+    },
+    "displaySmall": {
+      "fontFamily": "Inter",
+      "fontSize": 36,
+      "fontWeight": 400,
+      "lineHeight": 44,
+      "letterSpacing": 0
+    },
+    "headlineLarge": {
+      "fontFamily": "Inter",
+      "fontSize": 32,
+      "fontWeight": 400,
+      "lineHeight": 40,
+      "letterSpacing": 0
+    },
+    "headlineMedium": {
+      "fontFamily": "Inter",
+      "fontSize": 28,
+      "fontWeight": 400,
+      "lineHeight": 36,
+      "letterSpacing": 0
+    },
+    "headlineSmall": {
+      "fontFamily": "Inter",
+      "fontSize": 24,
+      "fontWeight": 400,
+      "lineHeight": 32,
+      "letterSpacing": 0
+    },
+    "titleLarge": {
+      "fontFamily": "Inter",
+      "fontSize": 22,
+      "fontWeight": 500,
+      "lineHeight": 28,
+      "letterSpacing": 0
+    },
+    "titleMedium": {
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": 500,
+      "lineHeight": 24,
+      "letterSpacing": 0.15
+    },
+    "titleSmall": {
+      "fontFamily": "Inter",
+      "fontSize": 14,
+      "fontWeight": 500,
+      "lineHeight": 20,
+      "letterSpacing": 0.1
+    },
+    "labelLarge": {
+      "fontFamily": "Inter",
+      "fontSize": 14,
+      "fontWeight": 500,
+      "lineHeight": 20,
+      "letterSpacing": 0.1
+    },
+    "labelMedium": {
+      "fontFamily": "Inter",
+      "fontSize": 12,
+      "fontWeight": 500,
+      "lineHeight": 16,
+      "letterSpacing": 0.5
+    },
+    "labelSmall": {
+      "fontFamily": "Inter",
+      "fontSize": 11,
+      "fontWeight": 500,
+      "lineHeight": 16,
+      "letterSpacing": 0.5
+    },
+    "bodyLarge": {
+      "fontFamily": "Inter",
+      "fontSize": 16,
+      "fontWeight": 400,
+      "lineHeight": 24,
+      "letterSpacing": 0.5
+    },
+    "bodyMedium": {
+      "fontFamily": "Inter",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "lineHeight": 20,
+      "letterSpacing": 0.25
+    },
+    "bodySmall": {
+      "fontFamily": "Inter",
+      "fontSize": 12,
+      "fontWeight": 400,
+      "lineHeight": 16,
+      "letterSpacing": 0.4
+    }
+  },
+  "shape": {
+    "corner": {
+      "extraSmall": 4,
+      "small": 8,
+      "medium": 12,
+      "large": 16,
+      "extraLarge": 28
+    }
+  },
+  "elevation": {
+    "level0": 0,
+    "level1": 1,
+    "level2": 3,
+    "level3": 6,
+    "level4": 8,
+    "level5": 12
+  },
+  "stateLayers": {
+    "hover": 0.08,
+    "focus": 0.12,
+    "pressed": 0.12,
+    "dragged": 0.16
+  },
+  "motion": {
+    "duration": {
+      "short1": 50,
+      "short2": 100,
+      "short3": 150,
+      "short4": 200,
+      "medium1": 250,
+      "medium2": 300,
+      "medium3": 350,
+      "medium4": 400,
+      "long1": 450,
+      "long2": 500,
+      "long3": 550,
+      "long4": 600,
+      "extraLong1": 700,
+      "extraLong2": 800,
+      "extraLong3": 900,
+      "extraLong4": 1000
+    },
+    "easing": {
+      "standard": "cubic-bezier(0.2, 0.0, 0.0, 1.0)",
+      "standardAccelerate": "cubic-bezier(0.3, 0.0, 0.8, 0.15)",
+      "standardDecelerate": "cubic-bezier(0.05, 0.7, 0.1, 1.0)",
+      "emphasized": "cubic-bezier(0.05, 0.7, 0.1, 1.0)",
+      "emphasizedAccelerate": "cubic-bezier(0.3, 0.0, 0.8, 0.15)",
+      "emphasizedDecelerate": "cubic-bezier(0.05, 0.7, 0.1, 1.0)"
+    }
+  },
+  "customColors": [
+    {
+      "name": "healthGreen",
+      "value": "#4CAF50",
+      "blend": true
+    },
+    {
+      "name": "calmBlue",
+      "value": "#2196F3",
+      "blend": true
+    },
+    {
+      "name": "energyAmber",
+      "value": "#FF9800",
+      "blend": true
+    }
+  ],
+  "images": [],
+  "videos": []
+}

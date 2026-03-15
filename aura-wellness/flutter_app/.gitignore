@@ -1,0 +1,103 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be committed to version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Flutter.xcframework
+**/ios/Flutter/Flutter.xcframework/**
+**/ios/Flutter/generated.xcconfig
+**/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Runner/Flutter/flutter_assets/
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+
+# Exceptions to above rules.
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# iOS/macOS
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*sync/
+**/ios/**/.sconsign.dblite
+**/ios/**/.tags*
+**/ios/**/.vscode/*
+!**/ios/**/.vscode/settings.json
+!**/ios/**/.vscode/tasks.json
+!**/ios/**/.vscode/launch.json
+!**/ios/**/.vscode/extensions.json
+**/ios/**/Flutter/Flutter.podspec
+**/ios/**/Flutter/Flutter.xcframework
+**/ios/**/Flutter/Flutter.xcframework/**
+**/ios/**/Flutter/Flutter.xcconfig
+**/ios/**/Flutter/Flutter.framework
+**/ios/**/Flutter/Flutter.framework/**
+**/ios/**/Flutter/Flutter.modulemap
+**/ios/**/Flutter/GeneratedPluginRegistrant.*
+**/ios/**/flutter_export_environment.sh
+**/ios/**/flutter_export_environment.sh
+**/ios/**/flutter_assets/
+**/ios/**/flutter_plugins.json
+**/ios/**/flutter_plugins
+
+# Temporary files created by pub
+.pub-cache/
+.pub/
+/packages/flutter_tools/test/flutter_tools_test.dart
+/packages/flutter_tools/test/general.dart
+
+# Exceptions to above rules.
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Avoid committing pubspec.lock for library packages; see
+# https://dart.dev/guides/libraries/private-files#pubspeclock.
+pubspec.lock
+
+# Generated code
+lib/generated/
+
+# Firebase configuration
+google-services.json
+GoogleService-Info.plist
+
+# Environment files
+.env
+.env.*
